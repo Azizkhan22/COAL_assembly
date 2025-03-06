@@ -1,4 +1,4 @@
-org 100h        
+org 100h        ; COM file starts at 0x100
 
 section .text
 start:
