@@ -1,18 +1,13 @@
-org 100h        ; COM file starts at 0x100
-
 section .text
-start:
-    mov ax, 5      ; Load first number into AX
-    add ax, 7      ; Add second number
-
-    ; Convert sum to ASCII
-    add ax, '0'    ; Convert single-digit sum to ASCII
-
-    ; Print the result
-    mov dl, al     ; Load ASCII sum into DL for printing
-    mov ah, 02h    ; DOS interrupt for printing a character
-    int 21h        ; Call DOS interrupt
-
-    ; Exit program
-    mov ah, 4Ch    ; DOS exit interrupt
-    int 21h
+    global main ;must be declared for linker (ld)
+main: ;tells linker entry point
+    mov edx,len ;message length
+    mov ecx,msg ;message to write
+    mov ebx,1 ;file descriptor (stdout)
+    mov eax,4 ;system call number (sys_write)
+    int 0x80 ;call kernel
+    mov eax,1 ;system call number (sys_exit)
+    int 0x80 ;call kernel
+section .data
+    msg db 'Hello, world!', 0xa ;our dear string
+    len equ $ - msg ;length of our dear string
