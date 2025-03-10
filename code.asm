@@ -1,13 +1,10 @@
-section .text
-    global main ;must be declared for linker (ld)
-main: ;tells linker entry point
-    mov edx,len ;message length
-    mov ecx,msg ;message to write
-    mov ebx,1 ;file descriptor (stdout)
-    mov eax,4 ;system call number (sys_write)
-    int 0x80 ;call kernel
-    mov eax,1 ;system call number (sys_exit)
-    int 0x80 ;call kernel
-section .data
-    msg db 'Hello, world!', 0xa ;our dear string
-    len equ $ - msg ;length of our dear string
+[org 0x100]
+
+MOV AX, 5        ; Load AX with 5
+INC AX           ; Increment AX (AX = 6)
+    
+MOV BX, 10       ; Load BX with 10
+DEC BX           ; Decrement BX (BX = 9)
+
+MOV AH, 4CH      ; Exit program
+INT 21H
