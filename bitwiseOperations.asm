@@ -1,0 +1,7 @@
+[org 0x0100]
+
+mov ax, 10
+not ax
+
+mov ax, 0x4C00
+int 0x21
